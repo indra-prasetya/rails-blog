@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @post.title
+%p
+  %b Slug:
+  = @post.slug
+%p
+  %b Description:
+  = @post.description
+%p
+  %b Category:
+  = @post.category_id
+%p
+  %b Content:
+  = @post.content
+%p
+  %b Is published:
+  = @post.is_published
+
+= link_to 'Edit', edit_post_path(@post)
+\|
+= link_to 'Back', posts_path
