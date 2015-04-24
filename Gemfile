@@ -48,4 +48,4 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'haml-rails'
 gem 'font-awesome-rails'
-
+gem "wysiwyg-rails"
