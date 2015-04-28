@@ -16,4 +16,6 @@
  *= require froala_style.min.css 
  *= require font-awesome
  *= require clean-blog.min
+ *= require nprogress
+ *= require nprogress-bootstrap
  */
