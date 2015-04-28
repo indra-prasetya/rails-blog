@@ -1,24 +1,34 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @post.title
-%p
-  %b Slug:
-  = @post.slug
-%p
-  %b Description:
-  = @post.description
-%p
-  %b Category:
-  = @post.category_id
-%p
-  %b Content:
-  = @post.content
-%p
-  %b Is published:
-  = @post.is_published
-
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
+.container
+  - model_class = Post
+  .page-header
+    %h1=t '.title', :default => model_class.model_name.human.titleize
+  
+  %p
+    %strong= model_class.human_attribute_name(:title) + ':'
+    %br
+    = @post.title
+  %p
+    %strong= model_class.human_attribute_name(:slug) + ':'
+    %br
+    = @post.slug
+  %p
+    %strong= model_class.human_attribute_name(:description) + ':'
+    %br
+    = @post.description
+  %p
+    %strong= model_class.human_attribute_name(:category_id) + ':'
+    %br
+    = @post.category_id
+  %p
+    %strong= model_class.human_attribute_name(:content) + ':'
+    %br
+    = @post.content
+  %p
+    %strong= model_class.human_attribute_name(:is_published) + ':'
+    %br
+    = @post.is_published
+  
+  
+  = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn btn-default'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

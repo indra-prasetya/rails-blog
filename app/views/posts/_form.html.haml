@@ -1,28 +1,33 @@
-= form_for @post do |f|
-  - if @post.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
-      %ul
-        - @post.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :slug
-    = f.text_field :slug
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :category_id
-    = f.number_field :category_id
-  .field
-    = f.label :content
-    = f.text_area :content, :id => 'eg-textarea'
-  .field
-    = f.label :is_published
-    = f.check_box :is_published
-  .actions
-    = f.submit 'Save'
+= form_for @post, html: { class: "form form-horizontal post" } do |f|
+  .form-group
+    = f.label :title, class: 'control-label'
+    .controls
+      = f.text_field :title, class: 'form-control', required: true
+    = error_span(@post[:title])
+  .form-group
+    = f.label :slug, class: 'control-label'
+    .controls
+      = f.text_field :slug, class: 'form-control', required: true
+    = error_span(@post[:slug])
+  .form-group
+    = f.label :description, class: 'control-label'
+    .controls
+      = f.text_field :description, class: 'form-control', required: true
+    = error_span(@post[:description])
+  .form-group
+    = f.label :category_id, class: 'control-label'
+    .controls
+      = f.text_field :category_id, class: 'form-control', required: true
+    = error_span(@post[:category_id])
+  .form-group
+    = f.label :content, class: 'control-label'
+    .controls
+      = f.text_area :content, class: 'form-control', required: true, :id => 'eg-textarea'
+    = error_span(@post[:content])
+  .form-group
+    = f.label :is_published, class: 'control-label'
+    .controls
+      = f.text_field :is_published, class: 'form-control', required: true
+    = error_span(@post[:is_published])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn btn-default'

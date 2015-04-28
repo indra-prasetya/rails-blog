@@ -1,31 +1,21 @@
-%h1 Listing posts
-
-%table
-  %thead
-    %tr
-      %th Title
-      %th Slug
-      %th Description
-      %th Category
-      %th Content
-      %th Is published
-      %th
-      %th
-      %th
-
-  %tbody
-    - @posts.each do |post|
-      %tr
-        %td= post.title
-        %td= post.slug
-        %td= post.description
-        %td= post.category_id
-        %td= post.content
-        %td= post.is_published
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Post', new_post_path
+- model_class = Post
+.container
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      - @posts.each do |post|
+        .post-preview
+          %a{:href => "post.html"}
+            %h2.post-title
+              = link_to post.title, post_path(post)
+            %h3.post-subtitle
+              = post.description
+              = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-default btn-xs'
+              = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+          %p.post-meta
+            Posted on 
+            =l post.created_at
+        %hr/
+      / Pager
+      %ul.pager
+        %li.next
+          %a{:href => "#"} Older Posts →

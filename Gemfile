@@ -47,5 +47,6 @@ gem 'devise'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'haml-rails'
+gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
-gem "wysiwyg-rails"
+gem 'wysiwyg-rails'
