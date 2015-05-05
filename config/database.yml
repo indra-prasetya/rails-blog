@@ -1,10 +1,11 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: unicode 
   database: myapp_development
   pool: 5
-  username: postgres
-  password: admin
+  username: yxyedxyhdobxpo
+  password: UL8QIME1OufHVbi0WBdYe5jTgZ
+#ec2-23-23-81-221.compute-1.amazonaws.com:5432/d6ldlob0ks61mm
 
 development:
   <<: *default
@@ -19,4 +20,4 @@ test:
 
 production:
   <<: *default
-  database: rails_blog_prod
+  database: rails_blog_dev
