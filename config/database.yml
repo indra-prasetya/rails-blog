@@ -3,9 +3,9 @@ default: &default
   encoding: unicode 
   database: myapp_development
   pool: 5
-  username: yxyedxyhdobxpo
-  password: UL8QIME1OufHVbi0WBdYe5jTgZ
-#ec2-23-23-81-221.compute-1.amazonaws.com:5432/d6ldlob0ks61mm
+  username: <%= ENV["PG_USERNAME"] %>
+  password: <%= ENV["PG_PASSWORD"] %>
+  #ec2-23-23-81-221.compute-1.amazonaws.com:5432/d6ldlob0ks61mm
 
 development:
   <<: *default
