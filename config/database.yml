@@ -3,21 +3,21 @@ default: &default
   encoding: unicode 
   database: myapp_development
   pool: 5
-  username: <%= ENV["PG_USERNAME"] %>
+  username: postgres
   password: <%= ENV["PG_PASSWORD"] %>
   #ec2-23-23-81-221.compute-1.amazonaws.com:5432/d6ldlob0ks61mm
 
 development:
   <<: *default
-  database: d6ldlob0ks61mm
+  database: rails_blog_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: d6ldlob0ks61mm
+  database: rails_blog_test
 
 production:
   <<: *default
-  database: d6ldlob0ks61mm
+  database: rails_blog
