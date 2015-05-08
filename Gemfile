@@ -44,6 +44,7 @@ platforms :jruby, :mingw, :mswin do
   gem 'tzinfo-data'
 end
 
+gem 'nokogiri'
 gem 'pg'
 gem 'devise'
 gem 'kaminari'
