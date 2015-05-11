@@ -2,9 +2,14 @@ default: &default
   adapter: postgresql
   encoding: unicode 
   pool: 5
-  username: <%= ENV["OPENSHIFT_POSTGRESQL_DB_USERNAME"] %>
-  password: <%= ENV["OPENSHIFT_POSTGRESQL_DB_PASSWORD"] %>
-  #ec2-23-23-81-221.compute-1.amazonaws.com:5432/d6ldlob0ks61mm
+  host:     <%= ENV['OPENSHIFT_POSTGRESQL_DB_HOST'] %>
+  port:     <%= ENV['OPENSHIFT_POSTGRESQL_DB_PORT'] %>
+  username: <%= ENV['OPENSHIFT_MYSQL_DB_USERNAME'] %>
+  password: <%= ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD'] %>
+  min_messages: ERROR
+  reconnect: true
+  timeout: 5000
+  encoding: utf8
 
 development:
   <<: *default
