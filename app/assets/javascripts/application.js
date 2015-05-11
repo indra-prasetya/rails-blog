@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require clean-blog.js
 //= require turbolinks
-//= require froala_editor.min.js
-//= require plugins/file_upload.min.js
+//= require ckeditor/init
 //= require_tree .
 //= require nprogress
 //= require nprogress-turbolinks

@@ -1,23 +1,27 @@
 default: &default
   adapter: postgresql
   encoding: unicode 
-  database: myapp_development
   pool: 5
-  username: postgres
-  password: <%= ENV["PG_PASSWORD"] %>
-  #ec2-23-23-81-221.compute-1.amazonaws.com:5432/d6ldlob0ks61mm
+  host:     <%= ENV['OPENSHIFT_POSTGRESQL_DB_HOST'] %>
+  port:     <%= ENV['OPENSHIFT_POSTGRESQL_DB_PORT'] %>
+  username: <%= ENV['OPENSHIFT_MYSQL_DB_USERNAME'] %>
+  password: <%= ENV['OPENSHIFT_POSTGRESQL_DB_PASSWORD'] %>
+  min_messages: ERROR
+  reconnect: true
+  timeout: 5000
+  encoding: utf8
 
 development:
   <<: *default
-  database: rails_blog_dev
+  database: <%= ENV['OPENSHIFT_APP_NAME'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: rails_blog_test
+  database: <%= ENV['OPENSHIFT_APP_NAME'] %>
 
 production:
   <<: *default
-  database: rails_blog
+  database: <%= ENV['OPENSHIFT_APP_NAME'] %>

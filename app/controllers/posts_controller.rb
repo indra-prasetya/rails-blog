@@ -1,11 +1,24 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :head_title
+  
+  def head_title
+    if !@post.nil?
+      @title = @post.title 
+      @description = @post.description
+      @info = "Posted by Indra on " + @post.updated_at.strftime("%b %d, %Y")
+    else
+      @title = "indra.prasetya"
+      @description = "Yet another useless crap"
+      @info = ""
+    end
+  end
   
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(5)
   end
 
   # GET /posts/1

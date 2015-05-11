@@ -17,17 +17,20 @@
   .form-group
     = f.label :category_id, class: 'control-label'
     .controls
-      = f.text_field :category_id, class: 'form-control', required: true
+      = select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name), :class => "form-control", required: true
     = error_span(@post[:category_id])
   .form-group
     = f.label :content, class: 'control-label'
     .controls
-      = f.text_area :content, class: 'form-control', required: true, :id => 'eg-textarea'
+      = f.cktext_area :content, class: 'form-control', required: true
     = error_span(@post[:content])
   .form-group
     = f.label :is_published, class: 'control-label'
     .controls
-      = f.text_field :is_published, class: 'form-control', required: true
+      = f.radio_button :is_published, true
+      Yes
+      = f.radio_button :is_published, false
+      No
     = error_span(@post[:is_published])
   = f.submit nil,class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn btn-default'
