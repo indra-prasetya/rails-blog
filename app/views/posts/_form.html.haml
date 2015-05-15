@@ -32,5 +32,6 @@
       = f.radio_button :is_published, false
       No
     = error_span(@post[:is_published])
-  = f.submit nil,class: 'btn btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn btn-default'
+  .pull-right
+    = f.submit nil,class: 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), '/' + @post[:slug], :class => 'btn btn-default'

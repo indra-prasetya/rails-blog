@@ -1,7 +1,11 @@
 .container
-  = @post.content.html_safe
-  
-  .p
-    = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn btn-default'
-    = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      %article
+        = @post.content.html_safe  
+
+      .pull-right
+        = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn btn-default'
+        - if user_signed_in?
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn btn-default'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

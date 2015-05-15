@@ -4,14 +4,15 @@
     .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
       - @posts.each do |post|
         .post-preview
-          %a{:href => post_path(post)}
+          %a{:href => '/' + post.slug}
             %h2.post-title
               = post.title
             %h3.post-subtitle
               = post.description              
           %p.post-meta
             Posted by Indra on 
-            = post.updated_at.strftime("%b %d, %Y")
+            %time
+              = post.updated_at.strftime("%b %d, %Y")
         %hr/
       / Pager
       %ul.pager

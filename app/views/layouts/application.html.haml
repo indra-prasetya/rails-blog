@@ -4,6 +4,7 @@
     %title= @title
     %link{:href => "http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800", :rel => "stylesheet", :type => "text/css"}
+    %meta{:name => "viewport", :content => "width=device-width; initial-scale=1.0;"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
@@ -15,7 +16,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "index.html"} indra.prasetya
+          %a.navbar-brand{:href => "/"} indra.prasetya
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             %li
@@ -25,26 +26,31 @@
             %li
               %a{:href => "/code"} Code
             %li
-              %a{:href => "/#"} Contact
+              %a{:href => "/contact"} Contact
     %header.intro-header{:style => "background-image: url(#{asset_path 'home-bg.jpg'})"}
       .container
         .row
           .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-            .site-heading
+            .site-heading.post-heading
               %h1
                 = @title
               %hr.small
               %span.subheading
                 = @description
-              %span.meta
-                = @info
+              - if @info
+                %span.meta
+                  Posted by <a href="https://plus.google.com/117790626314138048409?prsrc=5" target="_BLANK">Indra</a> on 
+                  = @info
     - if notice
       %p.alert.alert-success
         = notice
     - if alert
       %p.alert.alert-danger
         = alert
-    = yield
+        
+    %section
+      = yield
+      
     %footer
       .container
         .row
@@ -66,5 +72,9 @@
                     %i.fa.fa-circle.fa-stack-2x
                     %i.fa.fa-github.fa-stack-1x.fa-inverse
             %p.copyright.text-muted
-              Copyright &copy; indra.prasetya 2015
+              &lt;/&gt; with <em>Rails</em> on <em>OpenShift</em>     
+            - if user_signed_in? 
+              %p.text-center{'style' => 'font-size: 12px'}
+                = link_to 'New Post', new_post_path(@post)
+                = link_to "Logout", destroy_user_session_path, method: :delete
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

@@ -1,17 +1,16 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_filter :authenticate_user!, :except => [:show, :index]
   before_filter :head_title
   
   def head_title
     if !@post.nil?
-      @title = @post.title 
+      @title = @post.title
       @description = @post.description
-      @info = "Posted by Indra on " + @post.updated_at.strftime("%b %d, %Y")
+      @info = @post.updated_at.strftime("%b %d, %Y")
     else
       @title = "indra.prasetya"
       @description = "Yet another useless crap"
-      @info = ""
     end
   end
   
@@ -20,10 +19,24 @@ class PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).per(5)
   end
+  def index_code
+    @posts = Post.code().page(params[:page]).per(5)
+    render :index
+  end
+  def index_life
+    @posts = Post.life().page(params[:page]).per(5)
+    render :index
+  end
+  def index_about
+    @posts = Post.about().page(params[:page]).per(5)
+    render :index
+  end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find_by_slug(params[:slug])
+    logger.debug @post
   end
 
   # GET /posts/new
