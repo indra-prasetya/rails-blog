@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       @info = @post.updated_at.strftime("%b %d, %Y")
     else
       @title = "indra.prasetya"
-      @description = "Yet another useless crap"
+      @description = "yet another useless blog"
     end
   end
   

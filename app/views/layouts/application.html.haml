@@ -43,10 +43,12 @@
                   = @info
     - if notice
       %p.alert.alert-success
-        = notice
+        %small
+          = notice
     - if alert
       %p.alert.alert-danger
-        = alert
+        %small
+          = alert
         
     %section
       = yield
