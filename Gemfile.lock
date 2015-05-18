@@ -207,7 +207,6 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mini_magick
-  nokogiri
   nprogress-rails
   pg
   rails (= 4.2.0)
