@@ -34,4 +34,5 @@
     = error_span(@post[:is_published])
   .pull-right
     = f.submit nil,class: 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), '/' + @post[:slug], :class => 'btn btn-default'
+    - if @post[:slug]
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), '/' + @post[:slug], :class => 'btn btn-default'
