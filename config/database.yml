@@ -1,19 +1,22 @@
 default: &default
   adapter: postgresql
   encoding: unicode 
-  database: <%= ENV["PG_DATABASE"] %>
   pool: 5
-  username: <%= ENV["PG_USERNAME"] %>
-  password: <%= ENV["PG_PASSWORD"] %>
 
 development:
   <<: *default
-  database: <%= ENV["PG_DATABASE"] %>
+  username: postgres
+  password: admin
+  database: rails_blog_dev
 
 test:
   <<: *default
+  username: <%= ENV["PG_USERNAME"] %>
+  password: <%= ENV["PG_PASSWORD"] %>
   database: <%= ENV["PG_DATABASE"] %>
 
 production:
   <<: *default
+  username: <%= ENV["PG_USERNAME"] %>
+  password: <%= ENV["PG_PASSWORD"] %>
   database: <%= ENV["PG_DATABASE"] %>
